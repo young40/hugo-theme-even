@@ -1,0 +1,10 @@
+{{$extArray := split (.Get "src") "."}}
+{{$videoType := index $extArray (add (len $extArray) -1)}}
+
+<video class="video-shortcode" preload="{{ with .Get "preload" }}{{.}}{{else}}auto{{end}}"
+       width="{{with .Get "width"}}{{.}}{{else}}800{{end}}"
+       controls>
+  <source src="{{ .Get "src" }}" {{with $videoType}}type="video/{{.}}" {{ end }} >
+    There should have been a video here but your browser does not seem
+    to support it.
+</video>
